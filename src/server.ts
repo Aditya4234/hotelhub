@@ -5,19 +5,18 @@ import dotenv from 'dotenv';
 export default app;
 
 // Only start listening when running directly (not via Vercel serverless)
-const isVercel = process.env.VERCEL === '1';
+
 //
 
-if (!isVercel) {
-  const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 10000;
   
   // Connect to MongoDB before starting the server
   connectDB().then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+    app.listen(port, () => {
+      console.log(`Server running on http://localhost:${port}`);
     });
   }).catch((err) => {
     console.error('Failed to connect to MongoDB:', err);
     process.exit(1);
   });
-}
+
